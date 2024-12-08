@@ -193,8 +193,8 @@ def inference_video(args, video_save_path, device=None, total_workers=1, worker_
         model = SRVGGNetCompact(num_in_ch=3, num_out_ch=3, num_feat=64, num_conv=16, upscale=4, act_type='prelu')
         netscale = 4
         file_url = ['https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesr-animevideov3.pth']
-    elif args.model_name == '2x_AniScale2_ESRGAN_i16_110K.pth':  # x4 RRDBNet model
-        model = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64, num_block=23, num_grow_ch=32, scale=2)
+    elif args.model_name == '2x_AniScale2_ESRGAN_i16_110K.pth':  # x2 RRDBNet model
+        model = SRVGGNetCompact(num_in_ch=3, num_out_ch=3, num_feat=64, num_conv=16, upscale=4, act_type='prelu')
         netscale = 2
         file_url = ['https://github.com/Sirosky/Upscale-Hub/releases/download/AniScale2/2x_AniScale2_ESRGAN_i16_110K.pth']    
     elif args.model_name == 'realesr-general-x4v3':  # x4 VGG-style model (S size)
@@ -339,7 +339,7 @@ def main():
         '--model_name',
         type=str,
         default='realesr-animevideov3',
-        help=('Model names: realesr-animevideov3 | RealESRGAN_x4plus_anime_6B | RealESRGAN_x4plus | RealESRNet_x4plus |'
+        help=('Model names: realesr-animevideov3 | RealESRGAN_x4plus_anime_6B | RealESRGAN_x4plus | 2x_AniScale2_ESRGAN_i16_110K.pth | RealESRNet_x4plus |'
               ' RealESRGAN_x2plus | realesr-general-x4v3'
               'Default:realesr-animevideov3'))
     parser.add_argument('-o', '--output', type=str, default='results', help='Output folder')
