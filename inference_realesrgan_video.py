@@ -193,6 +193,10 @@ def inference_video(args, video_save_path, device=None, total_workers=1, worker_
         model = SRVGGNetCompact(num_in_ch=3, num_out_ch=3, num_feat=64, num_conv=16, upscale=4, act_type='prelu')
         netscale = 4
         file_url = ['https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesr-animevideov3.pth']
+    elif args.model_name == '2x_AniScale2_ESRGAN_i16_110K.pth':  # x4 RRDBNet model
+        model = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64, num_block=23, num_grow_ch=32, scale=2)
+        netscale = 2
+        file_url = ['https://github.com/Sirosky/Upscale-Hub/releases/download/AniScale2/2x_AniScale2_ESRGAN_i16_110K.pth']    
     elif args.model_name == 'realesr-general-x4v3':  # x4 VGG-style model (S size)
         model = SRVGGNetCompact(num_in_ch=3, num_out_ch=3, num_feat=64, num_conv=32, upscale=4, act_type='prelu')
         netscale = 4
